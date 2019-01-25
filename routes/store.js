@@ -5,8 +5,6 @@ module.exports = app;
 
 app.get('/', function (request, response) {
 
-    // TODO: Initialize the query variable with a SQL query
-    // that returns all the rows in the ‘store’ table
     var query = 'select * from store';
 
     db.any(query)
@@ -91,9 +89,6 @@ app.get('/edit/(:id)', function (request, response) {
     // Fetch the id of the item from the request.
     var itemId = request.params.id;
 
-    // TODO: Initialize the query variable with a SQL query
-    // that returns all columns of an item whose id = itemId in the
-    // 'store' table
     var query = 'SELECT * FROM store WHERE id ='+ itemId +';';
     db.one(query)
         .then(function (row) {
@@ -142,9 +137,6 @@ app.put('/edit/(:id)', function (req, res) {
         // Fetch the id of the item from the request.
         var itemId = req.params.id;
 
-        // TODO: Initialize the updateQuery variable with a SQL query
-        // that updates the details of an item given its id
-        // in the 'store' table
         var updateQuery = 'UPDATE store SET sname=\''+req.body.sname+'\',qty='+req.body.qty+',price='+req.body.price+' WHERE id ='+itemId+';';
 
         // Running SQL query to insert data into the store table
@@ -182,9 +174,6 @@ app.delete('/delete/(:id)', function (req, res) {
     // Fetch item id of the item to be deleted from the request.
     var itemId = req.params.id;
 
-    // TODO: Initialize the deleteQuery variable with a SQL query
-    // that deletes an item whose id = itemId in the
-    // 'store' table
     var deleteQuery = 'DELETE FROM store WHERE id='+itemId+';';
     db.none(deleteQuery)
         .then(function (result) {
